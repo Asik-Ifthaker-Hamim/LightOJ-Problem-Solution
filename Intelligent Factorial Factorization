@@ -1,0 +1,105 @@
+//           * * Bismillahir Rahmanir Rahim  * *
+// ************************@Author*******************************
+/*                    Asik Ifthaker Hamim                       */
+#include <bits/stdc++.h>
+#include <fstream>
+using namespace std;
+typedef long long ll;
+typedef long double ld;
+typedef unsigned long long int ulli;
+typedef long long int lli;
+typedef unsigned long long ull;
+typedef vector<int> vi;
+typedef vector<ll> vl;
+typedef vector<string> vs;
+typedef pair<ll,ll> pr;
+#define pb push_back
+#define sz(n) n.size()
+#define vs(n) (int)n.size()
+#define pp pop_back
+#define sp(n) setprecision(n)
+const int MOD = 1000000007;
+#define ffor(a, b) for(int i = a; i <b; i++)
+#define frev(b, a) for(int i = b; i >= a; i--)
+#define PI (acos(-1.0))
+#define torad(x) ((x)*((2*acos(0))/180.0))
+#define todeg(x) ((x)*(180.0/(2*acos(0))))
+#define fixAngle(x) ((x)>1?1:(x)<-1?-1:(x))
+#define tan(a) tan(a)/(pi/180)
+#define sin(a) sin(a)/(pi/180)
+#define cos(a) cos(a)/(pi/180)
+#define inverse_sin(a) asin(a)/(pi/180)
+#define inverse_cos(a) acos(a)/(pi/180)
+#define inverse_tan(a) atan(a)/(pi/180)
+const int dr4[] = {0, 1, 0, -1};
+const int dc4[] = {1, 0, -1, 0};
+const int dr8[] = {0, 1, 1, 1, 0, -1, -1, -1};
+const int dc8[] = {1, 1, 0, -1, -1, -1, 0, 1};
+using namespace std;
+double neg_infinity(-std::numeric_limits<double>::infinity());
+map<lli,lli>mp;
+vector<int>primes;
+void sieve()
+{
+    int arr[105]={0};
+    for(int i=2;i<=100;i++)
+    {
+        if(arr[i]==0)
+        {
+            primes.pb(i);
+            for(int j=2*i;j<=100;j+=i)
+            {
+                arr[j]=1;
+            }
+        }
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    //freopen("point3.in","r",stdin);
+    //freopen("point3.out","w",stdout);
+    sieve();
+    int t;
+    cin>>t;
+    for(int k=1;k<=t;k++)
+    {
+        lli n;
+        cin>>n;
+        int a[n+1],b[n+1]={0};
+        for(int i=1;i<=n;i++)
+        {
+            a[i]=i;
+        }
+        for(int i=0;primes[i]<=n && i<primes.size();i++)
+        {
+            int temp=primes[i];
+            for(int j=temp;j<=n;j+=temp)
+            {
+                while(a[j]%temp==0)
+                {
+                    a[j]/=temp;
+                    b[temp]++;
+                }
+            }
+        }
+        cout<<"Case "<<k<<": "<<n<<" = ";
+         for(int i=0;primes[i]<=n && i<primes.size();i++)
+         {
+             cout<<primes[i]<<" ("<<b[primes[i]]<<")";
+             if(i!=primes.size()-1 && primes[i+1]<=n)
+             {
+                 cout<<" * ";
+             }
+         }
+         cout<<endl;
+    }
+
+
+}
+
+
+
